@@ -1,0 +1,30 @@
+{
+    "conjecture": {
+        "id": "CONJ-FALLBACK-01",
+        "graph_class": "connected",
+        "left_invariant": "diam",
+        "relation": "<=",
+        "right_expression": "rad / 2.0",
+        "max_order": 15,
+        "timeout_seconds": 5
+    },
+    "audit": {
+        "verified": true,
+        "conjecture_id": "CONJ-FALLBACK-01",
+        "analysis": {
+            "belongs_to_class": true,
+            "left_invariant_value": 4.0,
+            "right_expression_value": 1.0,
+            "relation_satisfied_by_graph": false
+        },
+        "invariants": {
+            "n": 5.0,
+            "m": 4.0,
+            "density": 0.4,
+            "rad": 2.0,
+            "diam": 4.0,
+            "max_deg": 2.0,
+            "min_deg": 1.0
+        }
+    }
+}
