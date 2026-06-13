@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  # L'orchestrateur central qui pilote la session de recherche
+  agent-controller:
+    build: .
+    container_name: mcp-agent-controller
+    volumes:
+      - ./data:/app/data
+    environment:
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+      - LLM_MODEL=gemma2:2b
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - mcp-invalidator
+      - mcp-graph-tools
+      - mcp-prover
+    # Le contrôleur lance le script principal au démarrage de l'infrastructure
+    command: python3 agent-controller/main.py
+
+  # Microservice MCP : Invalidateur de conjectures
+  mcp-invalidator:
+    build: .
+    container_name: mcp-server-invalidator
+    command: python3 mcp-invalidator/server.py
+
+  # Microservice MCP : Outils d'analyse topologique et de conversion g6
+  mcp-graph-tools:
+    build: .
+    container_name: mcp-server-graph-tools
+    command: python3 mcp-graph-tools/server.py
+
+  # Microservice MCP : Assistant de preuve formelle
+  mcp-prover:
+    build: .
+    container_name: mcp-server-prover
+    command: python3 mcp-prover/server.py

@@ -1,1 +1,1 @@
-# mcp-graph-research
+# MCP Graph Research Environment
