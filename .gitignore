@@ -6,3 +6,5 @@ data/experiments/results/*
 .env
 .venv/
 .dockerignore
+.env
+.pytest_cache/
