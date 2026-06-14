@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="mb-10 flex gap-4 p-4 bg-slate-800/50 rounded-2xl border border-slate-700">
+    <button onclick="sendCommand('/api/start', 'Recherche démarrée')"
+            class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-all transform hover:scale-105 active:scale-95 border-b-4 border-emerald-800">
+        ▶ Lancer la recherche
+    </button>
+
+    <button onclick="sendCommand('/api/stop', 'Recherche arrêtée')"
+            class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-all transform hover:scale-105 active:scale-95 border-b-4 border-red-800">
+        ⏹ Arrêter
+    </button>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-slate-800 p-6 rounded-2xl border-t-4 border-emerald-500 shadow-xl">
+        <h2 class="text-emerald-400 font-bold mb-6 text-lg uppercase tracking-wider">✅ Validées</h2>
+        {% for c in true_conjectures %}
+            <div class="card p-4 rounded-xl mb-3 border border-slate-700">
+                <h3 class="text-emerald-400 font-bold">{{ c.conjecture.id }}</h3>
+            </div>
+        {% else %}
+            <p class="text-slate-500 italic">Aucun théorème validé.</p>
+        {% endfor %}
+    </div>
+
+    <div class="bg-slate-800 p-6 rounded-2xl border-t-4 border-yellow-500 shadow-xl">
+        <h2 class="text-yellow-400 font-bold mb-6 text-lg uppercase tracking-wider">⏳ En cours</h2>
+        {% for c in in_progress %}
+            <div class="bg-slate-900 p-4 rounded-lg animate-pulse border border-yellow-500/30 text-white shadow-inner">
+                {{ c.conjecture.id }}
+            </div>
+        {% else %}
+            <p class="text-slate-500 italic">Aucun calcul en cours.</p>
+        {% endfor %}
+    </div>
+
+    <div class="bg-slate-800 p-6 rounded-2xl border-t-4 border-red-500 shadow-xl">
+        <h2 class="text-red-400 font-bold mb-6 text-lg uppercase tracking-wider">❌ Réfutées</h2>
+        {% for c in false_conjectures %}
+            <div class="bg-slate-900 p-4 rounded-lg border border-red-900/30 text-white">
+                {{ c.conjecture.id }}
+            </div>
+        {% else %}
+            <p class="text-slate-500 italic">Aucune conjecture réfutée.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    function sendCommand(url, message) {
+        fetch(url, { method: 'POST' })
+            .then(res => res.json())
+            .then(data => {
+                alert(message);
+                window.location.reload();
+            });
+    }
+</script>
+{% endblock %}

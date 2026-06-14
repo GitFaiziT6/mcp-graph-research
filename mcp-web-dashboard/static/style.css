@@ -1,0 +1,23 @@
+body {
+    background-color: #0f172a;
+    color: #f8fafc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    border-color: #6366f1;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+/* Force la visibilité des boutons au cas où */
+button {
+    display: inline-block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}

@@ -1,0 +1,9 @@
+{
+    "conjecture": {
+        "id": "TEST-322",
+        "invariant": "diam",
+        "relation": "<=",
+        "value": "2.0"
+    },
+    "status": "validated"
+}

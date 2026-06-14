@@ -1,4 +1,8 @@
 __pycache__/
 *.pyc
+.DS_Store
+data/experiments/logs/*
+data/experiments/results/*
 .env
-.pytest_cache/
+.venv/
+.dockerignore

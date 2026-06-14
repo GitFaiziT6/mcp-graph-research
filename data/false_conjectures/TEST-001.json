@@ -1,0 +1,9 @@
+{
+    "conjecture": {
+        "id": "TEST-001",
+        "left_invariant": "diam",
+        "relation": "<=",
+        "right_expression": "rad / 2.0"
+    },
+    "status": "validated"
+}
